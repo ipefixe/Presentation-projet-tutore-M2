@@ -1,0 +1,216 @@
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage{graphicx}
+\usepackage{beamerthemeWarsaw}
+\expandafter\def\expandafter\insertshorttitle\expandafter{\insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}
+
+\title{Algorithmes distribués sur Android}
+\author{Kevin \textsc{Boulala}, Maxime \textsc{Dubois}}
+\institute{Université de Franche Comté}
+\date{4 février 2016}
+
+\begin{document}
+
+  \begin{frame}
+    \titlepage
+  \end{frame}
+
+  \begin{frame}
+    \setcounter{tocdepth}{1}
+	  \tableofcontents[]
+  \end{frame}
+  
+  \section{Présentation générale}
+  \begin{frame}
+    \frametitle{Présentation générale}
+    \begin{block}{L'objectif principal}
+      Développement d'une plateforme permettant de programmer simplement des algorithmes distribués et de les exécuter sur des appareils android.
+    \end{block}
+    \begin{block}{Les autres objectifs}
+      \begin{itemize}
+        \item Utiliser cette plateforme pour implanter des algorithmes distribués
+        \item Développer une application utilisant ces algorithmes distribués
+      \end{itemize}
+    \end{block}
+  \end{frame}
+  
+  \section{Choix technologiques}
+  \begin{frame}
+    \setcounter{tocdepth}{2}
+	  \tableofcontents[currentsection]
+  \end{frame}
+    \subsection{NFC}
+    \begin{frame}
+      \frametitle{Choix technologiques}
+      \framesubtitle{NFC}
+      \begin{block}{Near Field Communication}
+        \begin{itemize}
+          \item Communication en Champ Proche (CCP) en français
+          \item Éxplosion de son utilisation en 2012
+          \item Android compatible depuis la version Ice Cream Sandwich (4.0)
+          \item Connexion des appareils très facile
+          \item 4cm de portée
+          \item 424kbit/s de débit
+          \item Pas utilisé pour le transfert de fichiers, plutôt pour établir les connexions
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \subsection{Bluetooth}
+    \begin{frame}
+      \frametitle{Choix technologiques}
+      \framesubtitle{Bluetooth}
+      \begin{block}{Bluetooth 4 (2010)}
+        \begin{itemize}
+          \item Quelques chiffres : création en 1994, > 28000 membres
+          \item Dans la continuité de Bluetooth 3 (2009) :
+          \begin{itemize}
+            \item $ \approx $ 10 mètres de portée (classe 2)
+            \item 24Mbit/s de débit
+          \end{itemize}
+          \item Utilisé pour les communications, le transfert de fichiers
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \subsection{Wi-Fi Direct}
+    \begin{frame}
+      \frametitle{Choix technologiques}
+      \framesubtitle{Wi-Fi Direct}
+      \begin{block}{Wi-Fi Direct anciennement Wi-Fi P2P}
+        \begin{itemize}
+          \item Wi-Fi mais sans point d'accès intermédiaire
+          \item 60 mètres de portée
+          \item 250Mbit/s de débit
+          \item Pour la même utilisation que le Bluetooth pour les appareils Android
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \subsection{Bilan}
+    \begin{frame}
+      \frametitle{Choix technologiques}
+      \framesubtitle{Bilan}
+      \begin{small}
+        \begin{block}{Synthèse}
+          \begin{itemize}
+            \item {\small Élimination du NFC : portée trop réduire}
+          \end{itemize}
+          \begin{table}
+            \begin{center}
+              \scalebox{0.7}{
+              \begin{tabular}{|c|c|c|}
+                \hline
+                & \textbf{Bluetooth} & \textbf{Wi-Fi Direct} \\
+                \hline
+                \textbf{Vitesse (en Mbit/s)} & 24 & 250 \\
+                \hline
+                \textbf{Portée (en m)} & 10 & 60 \\
+                \hline
+              \end{tabular}
+              }
+            \end{center}
+          \end{table}
+        \end{block}
+        \begin{block}{Solution retenue}
+          \begin{itemize}
+            \item Wi-Fi Direct nécessite que l'utilisateur valide chaque connexion
+            \item Quelques instabilités avec le Wi-Fi Direct et nos appareils
+          \end{itemize}
+          $ \Rightarrow $ Pour ces raisons, nous avons retenu le \textbf{Bluetooth}.
+        \end{block}
+      \end{small}
+    \end{frame}
+  
+  \section{Construction du réseaux}
+  \begin{frame}
+    \setcounter{tocdepth}{2}
+	  \tableofcontents[currentsection]
+  \end{frame}
+    \subsection{Les objectifs}
+    \begin{frame}
+      \frametitle{Construction du réseaux}
+      \framesubtitle{Les objectifs}
+      \begin{small}
+        \begin{block}{Les objectifs}
+          \begin{itemize}
+            \item Connexions automatiques
+            \item Ignorer les appareils qui ne nous intéressent pas
+          \end{itemize}
+          $ \Rightarrow $ Pas de topologie classique des réseaux Bluetooth (maître - esclaves)
+          \begin{columns}
+            \begin{column}{.5\textwidth}
+              \begin{figure}
+                \begin{center}
+                  \includegraphics[width=.4\textwidth]{images/BluetoothPiconet.png}
+                  \label{fig:piconet}
+                  \caption{Un piconet}
+                \end{center}
+              \end{figure}
+            \end{column}
+            \begin{column}{.5\textwidth}
+              \begin{figure}
+                \begin{center}
+                  \includegraphics[width=.4\textwidth]{images/BluetoothScatternet.png}
+                  \label{fig:scatternet}
+                  \caption{Un scatternet}
+                \end{center}
+              \end{figure}
+            \end{column}
+          \end{columns}
+        \end{block}
+      \end{small}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Construction du réseaux}
+      \framesubtitle{Les objectifs}
+      \begin{block}{Pas de maître, ni d'esclave}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=.4\textwidth]{images/reseau_quelconque.png}
+            \caption{Un réseau quelconque}
+            \label{fig:quelconque}
+          \end{center}
+        \end{figure}
+      \end{block}
+    \end{frame}
+    \subsection{Connexion automatique}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Identification et adressage}
+      \begin{block}{Adresse MAC}
+        \begin{itemize}
+          \item Bluetooth est un protocole réseau n'utilisant pas IP
+          \item Bluetooth utilise des adresses MAC
+          \item Pour identifier les appareils, nous utilisons nous aussi les adresses MAC
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Les socket bluetooth dans Android}
+      \begin{block}{Les comportements}
+        \begin{itemize}
+          \item Les données transférées restent intactes ou les erreurs sont détectées
+          \item Les données transférées arrivent dans le même ordre dans lequel elles ont été envoyés
+        \end{itemize}
+      \end{block}
+    \end{frame}
+  
+  \section{Routage}
+  \begin{frame}
+    \frametitle{Routage}
+    \framesubtitle{}
+  
+  \end{frame}
+  
+  \section{API}
+  \begin{frame}
+    \frametitle{API}
+    \framesubtitle{}
+  
+  \end{frame}
+  
+  % TODO La suite dépend de ce qu'on aura produit d'ici jeudi.
+  
+\end{document}
