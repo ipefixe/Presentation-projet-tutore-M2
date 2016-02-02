@@ -195,6 +195,35 @@
           \item Les données transférées arrivent dans le même ordre dans lequel elles ont été envoyés
         \end{itemize}
       \end{block}
+      \begin{block}{Mode de connexion : secure ou insecure}
+        \begin{itemize}
+          \item « insecure » ne demande pas de confirmation à l'utilisateur contrairement à « secure »
+          \item Une fois la connexion établit, les échanges sont chiffrés dans les deux modes
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Les socket bluetooth dans Android}
+      \begin{block}{Les problèmes}
+        \begin{itemize}
+          \item Ne peut faire du multi-client éfficacement et simplement \\
+          $ \Rightarrow $ Un thread de réception, un thread d'envoie
+          \item Les exceptions sont toutes du type IOException \\
+          $ \Rightarrow $ Il faut alors analyser le message de l'exception
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Détecter des appareils}
+      \begin{block}{Détection}
+        L'API Android fournit une méthode startDiscovery() qui lance une recherche pendant 12 secondes. Nous remarquons cependant que cette découverte est coûteuse :
+        \begin{itemize}
+          \item consomme de l'énergie
+          \item sollicite beaucoup le bluetooth rendant le tout instable (peut provoquer des déconnexions)
+        \end{itemize}
+      \end{block}
     \end{frame}
   
   \section{Routage}
