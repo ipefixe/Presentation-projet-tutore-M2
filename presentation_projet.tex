@@ -20,7 +20,7 @@
 
   \begin{frame}
     \setcounter{tocdepth}{1}
-	  \tableofcontents[]
+    \tableofcontents[]
   \end{frame}
   
   \section{Présentation générale}
@@ -40,7 +40,7 @@
   \section{Choix technologiques}
   \begin{frame}
     \setcounter{tocdepth}{2}
-	  \tableofcontents[currentsection]
+    \tableofcontents[currentsection]
   \end{frame}
     \subsection{NFC}
     \begin{frame}
@@ -117,7 +117,9 @@
             \item Wi-Fi Direct nécessite que l'utilisateur valide chaque connexion
             \item Quelques instabilités avec le Wi-Fi Direct et nos appareils
           \end{itemize}
-          $ \Rightarrow $ Pour ces raisons, nous avons retenu le \textbf{Bluetooth}.
+          \begin{center}
+            $ \Rightarrow $ Pour ces raisons, nous avons retenu le \textbf{Bluetooth}.
+          \end{center}
         \end{block}
       \end{small}
     \end{frame}
@@ -125,7 +127,7 @@
   \section{Construction du réseaux}
   \begin{frame}
     \setcounter{tocdepth}{2}
-	  \tableofcontents[currentsection]
+    \tableofcontents[currentsection]
   \end{frame}
     \subsection{Les objectifs}
     \begin{frame}
@@ -208,9 +210,26 @@
       \begin{block}{Les problèmes}
         \begin{itemize}
           \item Ne peut faire du multi-client éfficacement et simplement \\
-          $ \Rightarrow $ Un thread de réception, un thread d'envoie
+          $ \Rightarrow $ Un thread de réception, un thread d'envoi
           \item Les exceptions sont toutes du type IOException \\
           $ \Rightarrow $ Il faut alors analyser le message de l'exception
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Rendre l'appareil visible}
+      \begin{block}{La solution classique}
+        L'API Android propose une solution pour rendre un appareil découvrable.
+        \begin{itemize}
+          \item Nécessite la validation manuelle de l'utilisateur
+          \item Ne dure qu'un certain temps
+        \end{itemize}
+      \end{block}
+      \begin{block}{Notre solution}
+        Nous utilisons l'introspection de Java pour accéder à une API cachée et appeler la méthode setScanMode qui supprime les limitations de la solution classique. Mais...
+        \begin{itemize}
+          \item aucune assurance que cette méthode reste viable dans les prochaines versions d'Android
         \end{itemize}
       \end{block}
     \end{frame}
@@ -223,9 +242,67 @@
           \item consomme de l'énergie
           \item sollicite beaucoup le bluetooth rendant le tout instable (peut provoquer des déconnexions)
         \end{itemize}
+        Il faut donc utiliser cette fonctionnalité judicieusement.
       \end{block}
     \end{frame}
-  
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Comment se connecter aux bons appareils ?}
+      \begin{block}{Récupération des UUIDs d'un appareil}
+        \begin{itemize}
+          \item UUID : Universal Unique Identifier
+          \item Permet l'identification des services
+          \item Mais
+          \begin{itemize}
+            \item la liste des UUIDs récupérés étaient souvent incomplètes ou vides
+            \item le mécanisme coûteux en bande passante
+          \end{itemize}
+        \end{itemize}
+        \begin{center}
+          $ \Rightarrow $ On a donc abandonné cette solution
+        \end{center}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Connexion automatique}
+      \framesubtitle{Comment se connecter aux bons appareils ?}
+      \begin{block}{Solution de remplacement de la récupération des UUIDs}
+        \begin{itemize}
+          \item On ne cherche plus à savoir si un périphérique possède une UUID précise
+          \item L'application se connecte directement et on attend un timeout
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \subsection{Solution proposée}
+    \begin{frame}
+      \frametitle{La solution proposée}
+      \framesubtitle{}
+      \begin{block}{Stabilisation du réseau}
+        \begin{itemize}
+          \item Lancer une seule découverte par périphérique lors du démarrage de l'application
+          \item Limité à 4 connexions pour s'assurer une certaine stabilité
+        \end{itemize}
+      \end{block}
+      \begin{block}{Problème}
+        \begin{itemize}
+          \item Lorsqu'un périphérique se déconnecte, le réseau peut s'éffondrer aléatoirement
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{La solution proposée}
+      \framesubtitle{}
+      \begin{block}{Réseau en forme d'arbre}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=.5\textwidth]{images/auto.png}
+            \caption{Exemple de réseau}
+            \label{fig:auto}
+          \end{center}
+        \end{figure}
+      \end{block}
+    \end{frame}
+
   \section{Routage}
   \begin{frame}
     \frametitle{Routage}
