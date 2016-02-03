@@ -280,10 +280,10 @@
     \end{frame}
 
   \section{Routage}
-    \subsection{Communication par des intermédiaires}
+    \subsection{Principe}
     \begin{frame}
       \frametitle{Routage}
-      \framesubtitle{Communication par des intermédiaires}
+      \framesubtitle{Principe}
       \begin{block}{Problème}
         \begin{figure}
           \begin{center}
@@ -298,9 +298,10 @@
         \end{center}
       \end{block}
     \end{frame}
+    \subsection{Table de routage}
     \begin{frame}
-      \frametitle{Communication par des intermédiaires}
-      \framesubtitle{Fonctionnement}
+      \frametitle{Routage}
+      \framesubtitle{Table de routage}
       \begin{block}{Protocole de routage à vecteur de distances}
         Ce protocole enregistre une vue du réseau grâce à une table de routage.
       \end{block}
@@ -318,6 +319,34 @@
             \item Lors de la réception, vérification des chemins les plus courts
           \end{itemize}
         \end{table}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Routage}
+      \framesubtitle{Table de routage}
+      \begin{block}{Exemple}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=.5\textwidth]{images/indirecte.png}
+            \caption{Exemple de communications indirectes}
+            \label{fig:indirecte}
+          \end{center}
+        \end{figure}
+        \begin{center}
+          Table de routage de \textbf{Rouge}
+          \begin{small}
+            \begin{table}
+              \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Destination} & \textbf{Prochain noeud} & \textbf{Coût} \\
+                \hline
+                Bleu & Bleu & 1 \\
+                Jaune & Bleu & 2 \\
+                \hline
+              \end{tabular}
+            \end{table}
+          \end{small}
+        \end{center}
       \end{block}
     \end{frame}
   
