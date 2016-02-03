@@ -280,11 +280,46 @@
     \end{frame}
 
   \section{Routage}
-  \begin{frame}
-    \frametitle{Routage}
-    \framesubtitle{}
-  
-  \end{frame}
+    \subsection{Communication par des intermédiaires}
+    \begin{frame}
+      \frametitle{Routage}
+      \framesubtitle{Communication par des intermédiaires}
+      \begin{block}{Problème}
+        \begin{figure}
+          \begin{center}
+            \includegraphics[width=.5\textwidth]{images/indirecte.png}
+            \caption{Exemple de communications indirectes}
+            \label{fig:indirecte}
+          \end{center}
+        \end{figure}
+        \begin{center}
+          Comment faire échanger \textbf{rouge} et \textbf{jaune} ?\\
+          $ \Rightarrow $ On fait transiter par \textbf{bleu}
+        \end{center}
+      \end{block}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Communication par des intermédiaires}
+      \framesubtitle{Fonctionnement}
+      \begin{block}{Protocole de routage à vecteur de distances}
+        Ce protocole enregistre une vue du réseau grâce à une table de routage.
+      \end{block}
+      \begin{block}{Table de routage}
+        \begin{table}
+          \begin{center}
+            \begin{tabular}{|c|c|c|}
+               \hline
+               Destination & Adresse du prochain noeud & Coût \\
+               \hline
+            \end{tabular}
+          \end{center}
+          \begin{itemize}
+            \item Diffusion périodique de la table aux voisins
+            \item Lors de la réception, vérification des chemins les plus courts
+          \end{itemize}
+        \end{table}
+      \end{block}
+    \end{frame}
   
   \section{API}
   \begin{frame}
