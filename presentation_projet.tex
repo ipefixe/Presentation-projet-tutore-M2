@@ -42,73 +42,48 @@
     \setcounter{tocdepth}{2}
     \tableofcontents[currentsection]
   \end{frame}
-    \subsection{NFC}
+    \subsection{Les options}
     \begin{frame}
       \frametitle{Choix technologiques}
-      \framesubtitle{NFC}
-      \begin{block}{Near Field Communication}
-        \begin{itemize}
-          \item Communication en Champ Proche (CCP) en français
-          \item Éxplosion de son utilisation en 2012
-          \item Android compatible depuis la version Ice Cream Sandwich (4.0)
-          \item Connexion des appareils très facile
-          \item 4cm de portée
-          \item 424kbit/s de débit
-          \item Pas utilisé pour le transfert de fichiers, plutôt pour établir les connexions
-        \end{itemize}
-      \end{block}
-    \end{frame}
-    \subsection{Bluetooth}
-    \begin{frame}
-      \frametitle{Choix technologiques}
-      \framesubtitle{Bluetooth}
-      \begin{block}{Bluetooth 4 (2010)}
-        \begin{itemize}
-          \item Quelques chiffres : création en 1994, > 28000 membres
-          \item Dans la continuité de Bluetooth 3 (2009) :
+      \framesubtitle{Les options}
+      \begin{small}
+        \begin{block}{NFC}
           \begin{itemize}
-            \item $ \approx $ 10 mètres de portée (classe 2)
-            \item 24Mbit/s de débit
+            \item Android compatible depuis la version Ice Cream Sandwich (4.0)
+            \item Connexion des appareils très facile
           \end{itemize}
-          \item Utilisé pour les communications, le transfert de fichiers
-        \end{itemize}
-      \end{block}
-    \end{frame}
-    \subsection{Wi-Fi Direct}
-    \begin{frame}
-      \frametitle{Choix technologiques}
-      \framesubtitle{Wi-Fi Direct}
-      \begin{block}{Wi-Fi Direct anciennement Wi-Fi P2P}
-        \begin{itemize}
-          \item Wi-Fi mais sans point d'accès intermédiaire
-          \item 60 mètres de portée
-          \item 250Mbit/s de débit
-          \item Pour la même utilisation que le Bluetooth pour les appareils Android
-        \end{itemize}
-      \end{block}
+        \end{block}
+        \begin{block}{Bluetooth}
+          \begin{itemize}
+            \item Quelques chiffres : création en 1994, > 28000 membres
+            \item Utilisé pour les communications, le transfert de fichiers
+          \end{itemize}
+        \end{block}
+        \begin{block}{Wi-Fi Direct}
+          \begin{itemize}
+            \item Wi-Fi mais sans point d'accès intermédiaire
+            \item Pour la même utilisation que le Bluetooth pour les appareils Android
+          \end{itemize}
+        \end{block}
+      \end{small}
     \end{frame}
     \subsection{Bilan}
     \begin{frame}
       \frametitle{Choix technologiques}
       \framesubtitle{Bilan}
       \begin{small}
-        \begin{block}{Synthèse}
-          \begin{itemize}
-            \item {\small Élimination du NFC : portée trop réduire}
-          \end{itemize}
+        \begin{block}{Synthèse des technologies}
           \begin{table}
             \begin{center}
-              \scalebox{0.7}{
-              \begin{tabular}{|c|c|c|}
+              \begin{tabular}{|c|c|c|c|}
                 \hline
-                & \textbf{Bluetooth} & \textbf{Wi-Fi Direct} \\
+                & \textbf{NFC} & \textbf{Bluetooth} & \textbf{Wi-Fi Direct} \\
                 \hline
-                \textbf{Vitesse (en Mbit/s)} & 24 & 250 \\
+                \textbf{Vitesse (en Mbit/s)} & 0,424 & 24 & 250 \\
                 \hline
-                \textbf{Portée (en m)} & 10 & 60 \\
+                \textbf{Portée (en m)} & 0,1 & 10 & 60 \\
                 \hline
               \end{tabular}
-              }
             \end{center}
           \end{table}
         \end{block}
@@ -124,14 +99,14 @@
       \end{small}
     \end{frame}
   
-  \section{Construction du réseaux}
+  \section{Construction du réseau}
   \begin{frame}
     \setcounter{tocdepth}{2}
     \tableofcontents[currentsection]
   \end{frame}
     \subsection{Les objectifs}
     \begin{frame}
-      \frametitle{Construction du réseaux}
+      \frametitle{Construction du réseau}
       \framesubtitle{Les objectifs}
       \begin{small}
         \begin{block}{Les objectifs}
@@ -164,7 +139,7 @@
       \end{small}
     \end{frame}
     \begin{frame}
-      \frametitle{Construction du réseaux}
+      \frametitle{Construction du réseau}
       \framesubtitle{Les objectifs}
       \begin{block}{Pas de maître, ni d'esclave}
         \begin{figure}
