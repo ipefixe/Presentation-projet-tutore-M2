@@ -391,29 +391,35 @@
   
   \section{Algorithme Distribué}
   \begin{frame}
-    \frametitle{Le Lann}
-    \framesubtitle{Exclusion mutuelle sur anneau unidirectionnel}
-    \begin{block}{Rappel des cours d'Algorithme Distribué}
-      Principe de l'algorithme Le Lann :
-      \begin{itemize}
-        \item Jeton qui tourne sur un anneau
-        \item Lorsqu'un appareil reçoit un jeton, il regarde s'il souhaite accéder à la section critique
-        \item S'il n'en a pas besoin ou qu'il a fini d'accéder à la ressource, il envoie le jeton au prochain appareil
-      \end{itemize}
-    \end{block}
+    \setcounter{tocdepth}{2}
+    \tableofcontents[currentsection]
   \end{frame}
-  \begin{frame}
-    \frametitle{Lamport}
-    \framesubtitle{Exclusion mutuelle avec horloges logiques}
-    \begin{block}{Rappel des cours d'Algorithme Distribué}
-      Principe de l'algorithme Lamport :
-      \begin{itemize}
-        \item Horloges logiques qui s'inscrémentent entre chaque évènement
-        \item Lorsqu'un appareil reçoit un jeton, il regarde s'il souhaite accéder à la section critique
-        \item Diffusion de la demande d'accès critique et attente d'un consensus pour accéder à la section critique
-      \end{itemize}
-    \end{block}
-  \end{frame}
+    \subsection{Le Lann}
+    \begin{frame}
+      \frametitle{Le Lann}
+      \framesubtitle{Exclusion mutuelle sur anneau unidirectionnel}
+      \begin{block}{Rappel des cours d'Algorithme Distribué}
+        Principe de l'algorithme Le Lann :
+        \begin{itemize}
+          \item Jeton qui tourne sur un anneau
+          \item Lorsqu'un appareil reçoit un jeton, il regarde s'il souhaite accéder à la section critique
+          \item S'il n'en a pas besoin ou qu'il a fini d'accéder à la ressource, il envoie le jeton au prochain appareil
+        \end{itemize}
+      \end{block}
+    \end{frame}
+    \subsection{Lamport}
+    \begin{frame}
+      \frametitle{Lamport}
+      \framesubtitle{Exclusion mutuelle avec horloges logiques}
+      \begin{block}{Rappel des cours d'Algorithme Distribué}
+        Principe de l'algorithme Lamport :
+        \begin{itemize}
+          \item Horloges logiques qui s'inscrémentent entre chaque évènement
+          \item Lorsqu'un appareil reçoit un jeton, il regarde s'il souhaite accéder à la section critique
+          \item Diffusion de la demande d'accès critique et attente d'un consensus pour accéder à la section critique
+        \end{itemize}
+      \end{block}
+    \end{frame}
   
   \section{Bilan}
     \subsection{Travail réalisé}
