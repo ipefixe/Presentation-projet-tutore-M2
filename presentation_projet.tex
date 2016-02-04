@@ -402,6 +402,18 @@
       \end{itemize}
     \end{block}
   \end{frame}
+  \begin{frame}
+    \frametitle{Lamport}
+    \framesubtitle{Exclusion mutuelle avec horloges logiques}
+    \begin{block}{Rappel des cours d'Algorithme Distribué}
+      Principe de l'algorithme Lamport :
+      \begin{itemize}
+        \item Horloges logiques qui s'inscrémentent entre chaque évènement
+        \item Lorsqu'un appareil reçoit un jeton, il regarde s'il souhaite accéder à la section critique
+        \item Diffusion de la demande d'accès critique et attente d'un consensus pour accéder à la section critique
+      \end{itemize}
+    \end{block}
+  \end{frame}
   
   \section{Bilan}
     \subsection{Travail réalisé}
